@@ -1,0 +1,48 @@
+
+create table book(
+  bid varchar(20) not null,
+  title varchar(20) not null,
+  price int not null,
+  category varchar(30) not null,
+  primary key(bid)
+  foreign key category references category(cname) on delete cascade
+);
+
+create table address (
+  aid int not null,
+  street varchar(100) not null,
+  province varchar(20) not null,
+  country varchar(20) not null,
+  zip varchar(20) not null,
+  phone varchar(20),
+  primary key(aid)
+);
+
+create table category(
+  cname varchar(30) not null,
+  primary key(cname)
+);
+
+create table order(
+  oid int serial,
+  bid varchar(20) not null,
+  qty int not null,
+  price int not null,
+  date varchar(30),
+  status boolean
+  primary key(oid),
+  foreign key bid references book(bid) on delete cascade
+);
+create table webuser (
+  uid int serial,
+  username varchar(100) not null,
+  password varchar(100) not null,
+  firstname varchar(100) not null,
+  lastname varchar(100) not null,
+  type varchar(20) not null,
+  aid int,
+  primary key(uid),
+  foreign key(aid) references address(aid) on delete cascade
+);
+// type could also be enum type {customer, admin}, dunno what external provider is but varchar just in case
+
