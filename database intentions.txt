@@ -1,48 +1,84 @@
-
-create table book(
-  bid varchar(20) not null,
-  title varchar(20) not null,
-  price int not null,
-  category varchar(30) not null,
-  primary key(bid)
-  foreign key category references category(cname) on delete cascade
-);
-
-create table address (
-  aid int not null,
-  street varchar(100) not null,
-  province varchar(20) not null,
-  country varchar(20) not null,
-  zip varchar(20) not null,
-  phone varchar(20),
-  primary key(aid)
-);
+//
+drop table address cascade; 
+drop table book cascade; 
+drop table po cascade; 
+drop table category cascade; 
+drop table webuser cascade; 
 
 create table category(
   cname varchar(30) not null,
   primary key(cname)
 );
 
-create table order(
-  oid int serial,
+create table book(
+  bid varchar(20) not null,
+  title varchar(20) not null,
+  price decimal not null,
+  category varchar(30) not null,
+  primary key(bid),
+  foreign key (category) references category(cname) on delete cascade
+);
+
+create table address (
+  aid serial,
+  street varchar(100) not null,
+  province varchar(20) not null,
+  country varchar(20) not null,
+  zip varchar(20) not null,
+  phone varchar(20) not null,
+  primary key(aid)
+);
+
+
+create table po (
+  oid serial,
   bid varchar(20) not null,
   qty int not null,
-  price int not null,
+  price decimal not null,
   date varchar(30),
-  status boolean
+  status varchar(30),
   primary key(oid),
-  foreign key bid references book(bid) on delete cascade
+  foreign key (bid) references book(bid) on delete cascade
 );
 create table webuser (
-  uid int serial,
+  uid serial,
   username varchar(100) not null,
   password varchar(100) not null,
-  firstname varchar(100) not null,
-  lastname varchar(100) not null,
+  email varchar(100) not null,
   type varchar(20) not null,
-  aid int,
-  primary key(uid),
-  foreign key(aid) references address(aid) on delete cascade
+  primary key(uid)
 );
 // type could also be enum type {customer, admin}, dunno what external provider is but varchar just in case
 
+// dummy data
+
+insert into category values 
+('Sci-fi'),
+('Horror'),
+('Fantasy'),
+('Adventure'),
+('Romance')
+;
+
+
+insert into address(street, province, country, zip, phone) values
+('hi street', 'ab', 'ca', 'a1b2c2', '123-123-1234'),
+('bye street', 'cb', 'ca', 'b1a2c3', '312-314-1544'),
+('bye street', 'na', 'ca', 'l3a6u3', '984-364-2624');
+
+insert into book(bid, title, price, category) values
+('13111526', 'Book1', 12.30, 'Sci-fi'),
+('61431156', 'Book2', 25.60, 'Horror'),
+('82517215', 'Book3', 2.25, 'Adventure')
+;
+
+insert into po(bid, qty, price, date, status) values
+('13111526', 3, 36.90, 'Tuesday','Successful'),
+('61431156', 1, 25.60, 'Saturday','Pending')
+;
+
+insert into webuser(username, password, email, type) values
+('username', 'password', 'u@mail.com', 'user'),
+('user2', 'password', 'u2@mail.com' , 'user'),
+('admin', 'admin', 'admin@mail.com', 'admin')
+;
