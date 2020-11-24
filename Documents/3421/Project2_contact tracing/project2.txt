@@ -1,0 +1,99 @@
+DROP TABLE IF EXISTS method CASCADE;
+DROP TABLE IF EXISTS place CASCADE;
+DROP TABLE IF EXISTS test_center CASCADE;
+DROP TABLE IF EXISTS time_slot CASCADE;
+DROP TABLE IF EXISTS test CASCADE;
+DROP TABLE IF EXISTS test_type CASCADE;
+DROP TABLE IF EXISTS action CASCADE;
+DROP TABLE IF EXISTS person CASCADE;
+DROP TABLE IF EXISTS recon CASCADE;
+DROP TABLE IF EXISTS offer CASCADE;
+
+create table person (
+    name VARCHAR(20),
+    address VARCHAR(50),
+    phone BIGINT NOT NULL,
+    sin BIGINT,
+    constraint person_pk            
+    PRIMARY KEY(sin)
+);
+
+CREATE TABLE recon (
+  sin        BIGINT        NOT NULL, 
+  method     varchar(50)   NOT NULL, 
+  placename  varchar(50)   NOT NULL, 
+  time   varchar(50)   NOT NULL, 
+  PRIMARY KEY (sin, method, placename, time));
+ALTER TABLE recon ADD CONSTRAINT FKRecon_person FOREIGN KEY (sin) REFERENCES person (sin);
+ALTER TABLE recon ADD CONSTRAINT FKRecon_method FOREIGN KEY (method) REFERENCES method (method);
+ALTER TABLE recon ADD CONSTRAINT FKRecon_place FOREIGN KEY (placename) REFERENCES place (name);
+ALTER TABLE recon ADD CONSTRAINT FKRecon_time FOREIGN KEY (time) REFERENCES time_Slot (time);
+
+
+create table place(
+    name  VARCHAR(50), 
+    gps VARCHAR(20), 
+    description VARCHAR(20), 
+    address VARCHAR(20) NOT NULL, 
+
+    constraint placePk
+        PRIMARY KEY(name)
+);
+
+create table method(
+    method VARCHAR(50),
+
+    constraint methodPK
+        PRIMARY KEY(method)
+);
+
+
+CREATE TABLE test (
+  sin int NOT NULL, 
+  time   varchar(20) NOT NULL, 
+  testcentre varchar(20) NOT NULL, 
+  testtype   varchar(20) NOT NULL, 
+  action     varchar(20) NOT NULL, 
+  PRIMARY KEY (sin, time, testcentre, test_type, action)
+);
+
+ALTER TABLE test ADD CONSTRAINT TestFK1 FOREIGN KEY (sin) REFERENCES person (sin);
+ALTER TABLE test ADD CONSTRAINT TestFK2 FOREIGN KEY (time) REFERENCES time_slot (time);
+ALTER TABLE test ADD CONSTRAINT TestFK3 FOREIGN KEY (testcentre) REFERENCES test_center (name);
+ALTER TABLE test ADD CONSTRAINT TestFK4 FOREIGN KEY (testtype) REFERENCES test_type (testtype);
+ALTER TABLE test ADD CONSTRAINT TestFK5 FOREIGN KEY (action) REFERENCES action (action);
+
+
+create table test_type(
+    testtype VARCHAR(30), 
+    constraint test_typePK
+        PRIMARY KEY(testtype)           
+);
+
+
+CREATE TABLE test_centre (
+  testcentre varchar(30) NOT NULL, 
+  PRIMARY KEY (test_centre));
+ALTER TABLE test_centre ADD CONSTRAINT test_centerFK FOREIGN KEY (testcentre) REFERENCES place (name);
+
+
+create table action(
+    action VARCHAR(20), 
+
+    constraint actionPK
+        PRIMARY KEY(action),
+);
+
+create table time_slot(
+    time VARCHAR(20),
+
+    constraint timeslotPK
+        PRIMARY KEY(time),
+);
+
+CREATE TABLE offer (
+  TestType   varchar(30) NOT NULL, 
+  testcentre varchar(30) NOT NULL, 
+  PRIMARY KEY (TestType, TestCenter));
+ALTER TABLE offer ADD CONSTRAINT FKoffertesttype FOREIGN KEY (TestType) REFERENCES test_type (testtype);
+ALTER TABLE offer ADD CONSTRAINT FKoffertestcentre FOREIGN KEY (testcentre) REFERENCES test_centre (testcentre);

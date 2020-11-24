@@ -1,0 +1,98 @@
+select * from album
+
+TITLE                                              YEAR       
+-------------------------------------------------- -----------
+Led Zepplin                                               1969
+
+  1 record(s) selected.
+
+
+db2 => select * from chart
+
+NAME                                              
+--------------------------------------------------
+Australian Go Set Top 20 Albums Chart             
+Canadian RPM top 100 Char                         
+Danish Albums Chart                               
+Norwegian Albums Char                             
+UK Albums Char                                    
+US Billboard 200                                  
+
+  6 record(s) selected.
+
+db2 => select * from charts
+
+NAME                                               STARTDAY   RANK       
+-------------------------------------------------- ---------- -----------
+Australian Go set Top 20 Albums chart              05/23/1970           9
+Canadian RPM top 100 Char                          04/21/1969          11
+Canadian RPM top 100 Chart                         04/21/1969          11
+Danish Albums Chart                                04/07/1969           8
+Norwegian Albums Chart                             06/10/1970          14
+UK Albums Chart                                    04/12/1969           6
+US Billboard 200                                   04/19/1969          10
+
+  7 record(s) selected.
+
+db2 => select * from orchestra
+
+NAME                 CONDUCTOR            ADDRESS              TITLE                SIZE       
+-------------------- -------------------- -------------------- -------------------- -----------
+Led zepplin          Robert Plant         Olympic studio       Led zepplin                    4
+Additional musician  Viram Jasani         Olympic studio       Led zepplin                    1
+Production           George Marino        Olympic studio       Led zepplin                    5
+
+  3 record(s) selected.
+
+db2 => select * from recording 
+
+TITLE                NUMBER      SONG_TITLE           STUDIO              
+-------------------- ----------- -------------------- --------------------
+Led Zepplin                    1 Good times Bad Times Olympic Studio      
+Led Zeppin                     2 You Shook Me         Olympic Studio      
+
+  2 record(s) selected.
+
+db2 => select * from recording_company
+
+TITLE                ADDRESS              ALBUM_TITLE          HOMPAGE             
+-------------------- -------------------- -------------------- --------------------
+
+
+db2 => select * from song 
+
+TITLE                                              GENRE                                             
+-------------------------------------------------- --------------------------------------------------
+Good times Bad Times                               Hard Rock, Blues Rock                             
+Babe Im Gonna Leave You                            Hard Rock, Blues Rock                             
+You Shook Me                                       Hard Rock, Blues Rock                             
+Dazed and Confused                                 Hard Rock, Blues Rock                             
+
+  4 record(s) selected.
+
+
+db2 => select * from week 
+
+STARTDAY  
+----------
+04/07/1969
+04/12/1969
+04/19/1969
+04/21/1969
+05/23/1970
+06/10/1970
+
+  6 record(s) selected.
+
+
+db2 => select * from musician
+
+NAME                                               HOMETOWN                                           INSTRUMENTS                                       
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+John Bonham                                        Redditch                                           Drums,Timpani, Backing Vocal                      
+Robert Plant                                       West Bromwich                                      Lead Vocal, harmonica                             
+Jimmy Page                                         Heston                                             electric, acoustic & pedel steel guitars,         
+John Paul Jones                                    sidcup                                             bass, organ, backing vocal                        
+
+  4 record(s) selected.
+

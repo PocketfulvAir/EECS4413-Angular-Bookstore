@@ -1,0 +1,118 @@
+-- query 1 within 
+tables -> book, catagory 
+select c.title, c.year, c.cat from book c where locate(lower(c.cat),lower(c.title)) > 0
+
+
+-- query 2  caa      
+tables -> club, member
+
+select * from (select count(club) as #Basic from member where club ='Basic'), (select count(club) as #CAA from member where club = 'CAA')
+
+
+-- query 3 least
+table -> club, member
+select * from ( select club, count(*) as count from member group by club order by count) limit 1
+
+
+--query 4  bycat  
+table-> customer,purchase
+
+-- fix it further ensure whether limit 135 needs to be hard coded 
+select customer.name, cat, sd.paid as paid from (select wz.cid, wz.club, wz.cat, sum (wz.paid) as paid from (select dx.cid, dx.club, dx.cat, offer.price * dx.qnty as paid from (select cid, club, book.cat, book.title, qnty from purchase inner join book on purchase.title = book.title order by cid, club, book.cat, book.title, qnty) as dx inner join offer on dx.title = offer.title group by dx.cid, dx.club, dx.cat, offer.Price *dx.qnty order by dx.cid, dx.club, dx.cat, offer.Price*dx.qnty) as wz group by wz.cid,  wz.club, wz.cat order by wz.cid, wz.club, wz.cat) as sd inner join customer On sd.cid = customer.cid limit 135
+
+
+-- query 5 unused 
+table -> customer, club, Purchase
+
+select dx.cid, dx.name from (select distinct dx.cid, dx.name, dx.ttl, dy.cnt from (select purchase.cid, customer.name, count(distinct club) as ttl from purchase inner join customer on customer.cid = purchase.cid group by purchase.cid, customer.name) as dx inner join (select cid, count(Club) as cnt from member group by cid) as dy on dy.cid = dx.cid group by dx.cid, dx.name, dx.ttl, dy.cnt) as dx Where dx.ttl < dx.cnt group by dx.cid, dx.name
+
+
+--query 6 common     -- check this again as it returns 282 tuple
+tables -> book, Customer
+
+select cx.name as namea, cx2.name as nameb from customer cx, customer  cx2, purchase pur, purchase pur2 where pur.cid = cx.cid and pur2.cid = cx2.cid and pur.title = pur2.title and	pur.year = pur2.year and cx.cid > cx2.cid group by cx.name, cx2.name order by namea, nameb
+
+
+-- query 7 citycat 
+Customer, book, catagory
+
+select dy.city, dy.cat, dy.#books from (select city, max(#books) as #books from (select C.city, B.cat, count(*) as #books from purchase as P join customer as C on P.cid = C.cid join book as B on P.title = B.title and P.year = B.year group by C.city, B.cat) group by city) as dx inner join (select C.city, B.cat, count(*) as #books from purchase as P join customer as C on P.cid = C.cid join book as B on P.title = B.title and P.year = B.year group by C.city, B.cat) as dy on dx.city = dy.city and dx.#books = dy.#books order by dy.city, dy.cat
+
+
+--query 8 eight 
+tables -> Club, book, offer
+
+select title, year from(select title, year, count(club) as tot from offer group by title, year) where tot=8 
+
+
+
+--query 9 discrepancy   -- fix this make sure we hard code limit 12 or not 
+tables -> book, offer
+
+select cast((offer.price-av) as decimal(5,2)) as discrepancy,offer.club from offer inner join(select title, avg(price) as av from offer group by title) as c on c.title = offer.title limit 12
+
+
+--query 10 package   -- do this   (get this)
+
+
+Select Customer.Name, Z.When, cast(Z.Total as Decimal(9,2)) as Total
+From (
+    Select Z.CID, Z.When, (Z.B_total + Z.Weight * Shipping.Cost) as Total
+    from (
+        select CID, When, Sum(cost) as B_total, Ceiling(Sum(B_Weight) / 500.00) * 500.00 as Weight
+        from (
+            Select Z.CID, Z.When, (Book.Weight * Z. QNTY) as B_Weight, Z.Cost, Z.QNTY
+            from (
+                select CID,When,Offer.Title, Purchase.club, (Offer.Price * Purchase.QNTY) as cost, Purchase.QNTY
+                from purchase
+                inner join Offer on Offer.Title = Purchase.Title and Offer.club = Purchase.club
+                order by CID,When,Offer.Title, Purchase.Title, QNTY) as Z
+            Inner Join Book on Book.Title = Z.Title
+            Group by Z.CID, Z.When, Z.Cost, Weight, QNTY
+            Order By CID)
+        Group by CID, When Order by CID) as Z
+    Inner Join Shipping on Z.Weight = Shipping.Weight) as Z
+Inner Join Customer on Customer.CID = Z.CID;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

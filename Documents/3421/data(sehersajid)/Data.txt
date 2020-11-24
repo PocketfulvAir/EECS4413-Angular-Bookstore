@@ -1,0 +1,65 @@
+			   
+INSERT INTO Person(sin, name, adress, phone) VALUES (123456789, 'john', 'abc street', '123456789');
+INSERT INTO Person(sin, name, adress, phone) VALUES (234567890, 'cook', 'def street', '423653312');
+INSERT INTO Person(sin, name, adress, phone) VALUES (345678901, 'jimmy', 'hij street', '234456232');
+INSERT INTO Person(sin, name, adress, phone) VALUES (456789012, 'charles', 'klm street', '673452321');
+INSERT INTO Person(sin, name, adress, phone) VALUES (567890123, 'anderson', 'nop street', '547623412');
+			   
+			   
+INSERT INTO Method(method) VALUES ('contact-tracing phone app');
+INSERT INTO Method(method) VALUES ('surveillance camera');
+INSERT INTO Method(method) VALUES ('registry sign in');
+INSERT INTO Method(method) VALUES ('registry sign out');
+			   
+INSERT INTO Place(name, gps, description, address) VALUES ('Place1', 'gps1', 'des1', 'address1');
+INSERT INTO Place(name, gps, description, address) VALUES ('Place2', 'gps2', 'des2', 'address2');
+INSERT INTO Place(name, gps, description, address) VALUES ('Place3', 'gps3', 'des3', 'address3');
+INSERT INTO Place(name, gps, description, address) VALUES ('Place4', 'gps4', 'des4', 'address4');
+INSERT INTO Place(name, gps, description, address) VALUES ('Place5', 'gps5', 'des5', 'address5');
+			   
+INSERT INTO TestCenter(TestCenter) VALUES ('Place1');
+INSERT INTO TestCenter(TestCenter) VALUES ('Place2');
+INSERT INTO TestCenter(TestCenter) VALUES ('Place3');
+			   
+INSERT INTO Action(aciton) VALUES ('action1');
+INSERT INTO Action(aciton) VALUES ('action2');
+INSERT INTO Action(aciton) VALUES ('action3');
+			   
+INSERT INTO TestType(TestType) VALUES ('yes');
+INSERT INTO TestType(TestType) VALUES ('no');
+
+			   
+INSERT INTO TimeSlot(time) VALUES ('3:00pm 25 September 2020');
+INSERT INTO TimeSlot(time) VALUES ('6:00pm 25 September 2020');
+INSERT INTO TimeSlot(time) VALUES ('9:00pm 25 September 2020');
+			   
+INSERT INTO Test(Person_sin, TimeSlot, TestCenter, TestType, Action) VALUES (123456789,'3:00pm 25 September 2020' ,'Place1', 'yes','action1');
+INSERT INTO Test(Person_sin, TimeSlot, TestCenter, TestType, Action) VALUES (234567890,'3:00pm 25 September 2020','Place1', 'no', 'action1');
+INSERT INTO Test(Person_sin, TimeSlot, TestCenter, TestType, Action) VALUES (345678901,'3:00pm 25 September 2020' , 'Place1', 'yes', 'action1');
+INSERT INTO Test(Person_sin, TimeSlot, TestCenter, TestType, Action) VALUES (456789012,'3:00pm 25 September 2020' , 'Place1', 'no', 'action1');
+INSERT INTO Test(Person_sin, TimeSlot, TestCenter, TestType, Action) VALUES (567890123,'3:00pm 25 September 2020' , 'Place1', 'yes', 'action1');
+INSERT INTO Test(Person_sin, TimeSlot, TestCenter, TestType, Action) VALUES (234567890,'6:00pm 25 September 2020' , 'Place2', 'no', 'action1');
+	   
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (123456789, 'contact-tracing phone app', 'Place1', '6:00pm 25 September 2020');
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (234567890, 'registry sign in', 'Place1', '6:00pm 25 September 2020');
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (345678901, 'registry sign in', 'Place1', '6:00pm 25 September 2020');
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (456789012, 'contact-tracing phone app', 'Place1', '6:00pm 25 September 2020');
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (345678901, 'registry sign out', 'Place1', '6:00pm 25 September 2020');
+
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (123456789, 'surveillance camera', 'Place2', '3:00pm 25 September 2020');
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (234567890, 'contact-tracing phone app', 'Place2', '3:00pm 25 September 2020');
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (345678901, 'surveillance camera', 'Place2', '3:00pm 25 September 2020');
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (456789012, 'contact-tracing phone app', 'Place2', '3:00pm 25 September 2020');
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (567890123, 'surveillance camera', 'Place2', '3:00pm 25 September 2020');
+
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (567890123, 'registry sign in', 'Place3', '6:00pm 25 September 2020');
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (234567890, 'contact-tracing phone app', 'Place3', '6:00pm 25 September 2020');
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (345678901, 'surveillance camera', 'Place3', '6:00pm 25 September 2020');
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (567890123, 'registry sign out', 'Place3', '6:00pm 25 September 2020');
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (567890123, 'surveillance camera', 'Place3', '6:00pm 25 September 2020');
+
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (123456789, 'registry sign in', 'Place1', '9:00pm 25 September 2020');
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (234567890, 'surveillance camera', 'Place1', '9:00pm 25 September 2020');
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (567890123, 'registry sign in', 'Place2', '9:00pm 25 September 2020');
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (123456789, 'registry sign out', 'Place1', '9:00pm 25 September 2020');
+INSERT INTO Recon(Person_sin, Method, Place_name, TimeSlot) VALUES (567890123, 'registry sign out', 'Place2', '9:00pm 25 September 2020');

@@ -1,0 +1,25 @@
+select c.title, r.name
+From recording r, charts c 
+Where r.title = c.title and c.rank <= 100
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

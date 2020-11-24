@@ -1,0 +1,1 @@
+select cast((offer.price-av) as decimal(5,2)) as discrepancy,offer.club from offer inner join(select title, avg(price) as av from offer group by title) as c on c.title = offer.title limit 12

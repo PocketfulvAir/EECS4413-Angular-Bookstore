@@ -1,0 +1,1 @@
+select * from (select count(club) as #Basic from member where club ='Basic'), (select count(club) as #CAA from member where club = 'CAA')

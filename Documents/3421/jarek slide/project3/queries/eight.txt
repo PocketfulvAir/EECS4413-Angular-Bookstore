@@ -1,0 +1,1 @@
+select title, year from(select title, year, count(club) as tot from offer group by title, year) where tot=8 

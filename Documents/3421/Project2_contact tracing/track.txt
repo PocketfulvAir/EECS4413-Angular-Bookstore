@@ -1,0 +1,4 @@
+ sin | name | testtime | entertime | exittime 
+-----+------+----------+-----------+----------
+(0 rows)
+
