@@ -1,0 +1,29 @@
+<h1><a href=" " id="header" routerLink="/">BookStore</a></h1>
+<ng-container *ngIf="loggedIn">
+  <p>already logged in</p>
+  <button (click)="logOut()">LogOut</button>
+</ng-container>
+<ng-container *ngIf="!loggedIn">
+ 
+  <div class="bg-img">
+    <form class="container">
+      <h2>Login</h2>
+      <label for="email"><b>Email</b></label>
+      <input id="user" type="text" placeholder="Enter Email or Username.." name="email" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input id="pw" type="text" placeholder="Enter Password" name="psw" required>
+
+      <button class="btn" type="button" (click)="testCompare()">Login</button> <br><br>
+      <p>
+        <a href="" routerLink="/register">Create Account</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="">Forgot password</a><br><br>
+      </p>
+    </form>
+  </div>
+  <!-- <button type="button" (click)="checksession()">check token</button>
+  <br>
+  <br>
+  <p>{{testOutput}}</p> -->
+</ng-container>

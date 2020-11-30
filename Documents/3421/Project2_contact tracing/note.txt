@@ -1,5 +1,0 @@
-Disclaimer: 
-
-I case the database doesn't; work I added the pgdump, dump.sql file so You can create the Database 
-
-Thanks 

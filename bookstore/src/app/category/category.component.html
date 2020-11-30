@@ -1,0 +1,53 @@
+<app-menu></app-menu>
+<br>
+<select [(ngModel)]="chosenCat">
+  <option ng-selected="selected">All</option>
+  <option *ngFor="let cat of categories" [ngValue]="cat.cname">
+    {{cat.cname}}
+  </option>
+</select>
+
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Book Id</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Price (in CAD)</th>
+        <th>Category</th>
+        <th>Image</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+      <tbody>
+        <tr *ngFor="let book of books">
+          <ng-container *ngIf="book.category === chosenCat || chosenCat === 'All'" >
+            <td>{{book.bid}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.price}}</td>
+            <td>{{book.category}}</td>
+            <td>{{book.imgurl}}</td>
+            <td>
+              <button type="button" class="btn" (click)="viewBook(book.bid)">Show</button>
+            </td>
+            <td>
+              <button type="button" class="add" (click)="addToCart(book.bid)">Add to Cart</button>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+  </table>
+</div>
+<div>
+  <app-viewbook *ngIf="action === 'view'" [book]="selectedBook"></app-viewbook>
+</div>
+<input type="text" id="review"/>
+<button type="button" (click)="addReview()">add review</button>
+
+<div style="bottom: 0px;position:fixed;width:100%">
+  <app-footer></app-footer>
+</div>
+

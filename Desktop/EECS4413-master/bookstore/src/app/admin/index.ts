@@ -1,1 +1,0 @@
-export * from './admin.component';   // barrel file( a module file which provides a centralized place for exporting components, interfaces, services etc)

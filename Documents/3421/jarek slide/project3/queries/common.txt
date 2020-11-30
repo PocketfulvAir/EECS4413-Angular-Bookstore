@@ -1,1 +1,0 @@
-select cx.name as namea, cx2.name as nameb from customer cx, customer  cx2, purchase pur, purchase pur2 where pur.cid = cx.cid and pur2.cid = cx2.cid and pur.title = pur2.title and	pur.year = pur2.year and cx.cid > cx2.cid group by cx.name, cx2.name order by namea, nameb

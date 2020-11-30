@@ -1,0 +1,44 @@
+<h1>Book Details</h1>
+
+<table>
+  <tr>
+    <td>Book Id</td>
+    <td>{{book.bid}}</td>
+  </tr>
+  <tr>
+    <td>Book Title</td>
+    <td>{{book.title}}</td>
+  </tr>
+  <tr>
+    <td>Book Author</td>
+    <td>{{book.author}}</td>
+  </tr>
+  <tr>
+    <td>Book Price</td>
+    <td>{{book.price}}</td>
+  </tr>
+  <tr>
+    <td>Book url</td>
+    <td>{{book.imgurl}}</td>
+  </tr>
+</table>
+<br>
+<img src="assets/img/{{book.imgurl}}" alt="cannot find image" height="200" width="200">
+<br>
+<ng-container *ngIf="!added && loggedIn">
+  <input type="text" id="review" />
+  <button type="button" (click)="addReview()">add review</button>
+</ng-container>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>Reviews</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let review of reviews">
+      <td>{{review.review}}</td>
+    </tr>
+  </tbody>
+</table>

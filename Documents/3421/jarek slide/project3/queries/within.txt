@@ -1,1 +1,0 @@
-select c.title, c.year, c.cat from book c where locate(lower(c.cat),lower(c.title)) > 0
