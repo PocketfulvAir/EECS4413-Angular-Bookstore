@@ -1,0 +1,35 @@
+<app-menu></app-menu><br><br>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+  <label for="username">Username</label>
+  <input id="username" type="text" formControlName="username" />
+
+  <label for="email">Email</label>
+  <input id="email" type="text" formControlName="email" />
+
+  <label for="password">Password</label>
+  <input id="password" type="text" formControlName="password" />
+
+  <button class="button" type="submit">Sign-up</button>
+</form>
+
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>username</th>
+        <th>password</th>
+        <th>email</th>
+        <th>type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.username}}</td>
+        <td>{{user.password}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.type}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

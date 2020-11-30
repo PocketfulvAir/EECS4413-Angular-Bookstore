@@ -1,0 +1,96 @@
+body {
+  background-color: rgb(16, 10, 10);
+}
+
+h1 {
+  color: rgb(255, 255, 255);
+  background-color:blue;
+  text-shadow: 1px 1px 2px black, 0 0 25px rgb(147, 147, 177), 0 0 5px rgb(136, 136, 151);
+  font-size: 95px;
+  font-family: sofia;
+  padding-left: 37%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+
+h2 {
+  color: rgb(0, 0, 0);
+}
+
+h3{
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter; 
+  z-index: 1;
+}
+
+/* login form */
+* {
+  box-sizing: border-box;
+}
+
+.bg-img {
+  min-height: 500px;
+  height: 100px;
+ 
+  /* Center and scale the image nicely */
+  background-position:left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Add styles to the form container */
+.container {
+  position: absolute;
+  /* padding-left: 70%; */
+  padding-right: 30%;
+  /* float: right; */
+  left: 33%;
+  margin: 20px;
+  max-width: 550px;
+  padding: 20px;
+  opacity: 0.9;
+  z-index: 0;
+  background-color: rgb(223, 212, 212);
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  font-size: 20px;
+  margin: 5px 0 22px 0;
+  border: 3px solid rgb(255, 255, 255);
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  font-size: 20px;
+  outline: none;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: blue;
+  color: white;
+  /* padding: 16px 20px; */
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  height: 40px;
+  width: 100%;
+  opacity: 1;
+  z-index: 1;
+}
+
+.btn:hover {
+  opacity: 1;
+  background-color: green;
+}
+
+a{
+  color: black;
+}
+a:hover{color: rgb(253, 252, 252);}
