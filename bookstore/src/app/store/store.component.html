@@ -1,0 +1,89 @@
+<select [(ngModel)]="chosenCat">
+  <option ng-selected="selected">All</option>
+  <option *ngFor="let cat of categories" [ngValue]="cat.cname">
+    {{cat.cname}}
+  </option>
+</select>
+
+<div class="product">
+  <hr>
+  <ng-container *ngFor="let book of books">
+    <ng-container *ngIf="book.category === chosenCat || chosenCat == 'All' || chosenCat == null">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="card">
+              <a href="javascript:void(0)" (click)="viewBook(book.bid)">
+                <img class="card-img" src="assets/img/{{book.imgurl}}" alt="img" width="150" height="200">
+              </a>
+              <div class="card-body">
+                <h4 class="card-title">{{book.title}}</h4>
+                <h6 class="card-subtitle mb-2 text-muted">ISBN: {{book.bid}}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Catagory: {{book.category}}</h6>
+                <div class="rate">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+                <div class="bottom">
+                  <div class="pricetext"><h5 class="mt-4">{{book.price}}</h5></div>
+                  <button type="button" class="add" (click)="addToCart(book.bid)">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+</div>
+<!--
+
+<select [(ngModel)]="chosenCat">
+  <option ng-selected="selected">All</option>
+  <option *ngFor="let cat of categories" [ngValue]="cat.cname">
+    {{cat.cname}}
+  </option>
+</select>
+
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>bid</th>
+        <th>title</th>
+        <th>author</th>
+        <th>price</th>
+        <th>category</th>
+        <th>imgurl</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <ng-container *ngIf="book.category === chosenCat || chosenCat == 'All'">
+          <td>{{book.bid}}</td>
+          <td>{{book.title}}</td>
+          <td>{{book.author}}</td>
+          <td>{{book.price}}</td>
+          <td>{{book.category}}</td>
+          <td>{{book.imgurl}}</td>
+          <td>
+            <button type="button" class="btn" (click)="viewBook(book.bid)">Show</button>
+          </td>
+          <td>
+            <button type="button" class="add" (click)="addToCart(book.bid)">Add to Cart</button>
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <app-viewbook *ngIf="action === 'view'" [book]="selectedBook"></app-viewbook>
+</div>
+  -->
