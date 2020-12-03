@@ -51,6 +51,12 @@ public class BookController {
 		return bookRepo.getTopTenBooks();
 	}
 	
+	@GetMapping("/getProductInfo")
+	public Book getProductInfo(@RequestParam String productId) {
+		List<Book> bookblock = bookRepo.getProductInfo(productId);
+		return bookblock.get(0);
+	}
+	
 	@PostMapping("/addreview")
 	public void addUser(@RequestBody Review review) {
 		reviewRepo.save(review);

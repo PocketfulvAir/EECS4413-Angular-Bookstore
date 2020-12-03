@@ -37,6 +37,12 @@ public class POController {
 		return poRepo.findAll();
 	}
 	
+	@GetMapping("/getOrderByNum")
+	public List getOrdersByPartNumber(String partNumber){
+		List orders = poRepo.getOrderByPartNum(partNumber);
+		return orders;
+	}
+	
 	@PostMapping("/add")
 	public void addOrder(@RequestBody PO order) {
 		poRepo.save(order);

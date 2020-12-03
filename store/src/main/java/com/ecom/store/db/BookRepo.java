@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.ecom.store.model.Book;
-import com.ecom.store.model.User;
 
 public interface BookRepo extends JpaRepository<Book, Long>{
 	@Query(value = "select book.bid, title, author, book.price, category, sum(qty) as quantity, sum(qty * book.price) as totalprice from book, pi where book.bid = pi.bid group by book.bid, title, author, book.price, category", nativeQuery = true)
@@ -20,4 +19,6 @@ public interface BookRepo extends JpaRepository<Book, Long>{
 	@Query(value = "select book.bid, title, sum(qty) as quantity, sum(qty * book.price) as totalsales from book, pi where book.bid = pi.bid group by book.bid, title order by quantity DESC LIMIT 10", nativeQuery = true)
 	List getTopTenBooks();
 	
+	@Query(value = "select * from book where bid=:bid", nativeQuery = true)
+	List<Book> getProductInfo(@Param("bid") String bid);
 }
