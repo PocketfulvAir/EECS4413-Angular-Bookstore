@@ -91,3 +91,15 @@ a{
     color: black;
 }
 a:hover{color: rgb(253, 252, 252);}
+
+
+.logoutmsg{
+  padding: 10px;
+  padding-left: 40px;
+}
+
+#logout{
+  background-color: blue;
+  color: white;
+  width: 10%;
+}

@@ -1,18 +1,21 @@
 <ng-container *ngIf="loggedIn">
-  <p>already logged in</p>
-  <button (click)="logOut()">LogOut</button>
+  <div class="logoutmsg">
+    <p>Already logged in</p>
+    <button id="logout" (click)="logOut()">Log Out</button>
+  </div>
 </ng-container>
 <ng-container *ngIf="!loggedIn">
   <div class="bg-img">
     <form class="container">
       <h2>Login</h2>
+      <hr>
       <label for="email"><b>Email</b></label>
       <input id="user" type="text" placeholder="Enter Email or Username.." name="email" required>
 
       <label for="psw"><b>Password</b></label>
-      <input id="pw" type="text" placeholder="Enter Password" name="psw" required>
+      <input id="pw" type="password" minlength="4" placeholder="Enter Password" name="psw" required>
 
-      <button type="button" (click)="testCompare()">Login</button> <br><br>
+      <button class="btn" type="button" (click)="testCompare()">Login</button> <br><br>
       <p>
         <a href="" routerLink="/register">Create Account</a>
         <br><br>

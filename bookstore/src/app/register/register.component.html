@@ -1,5 +1,5 @@
 <div class="bg-img">
-  <h1><a href=" " id="header" routerLink="/">BookStore</a></h1>
+  <!-- <h1><a href=" " id="header" routerLink="/">BookStore</a></h1> -->
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)" class="container">
     <h2>Register</h2>
     <hr>
@@ -7,7 +7,7 @@
     <input type="text" formControlName="username"  name="username" required>
     
     <label for="password"><b>Password</b></label>
-    <input type="text" formControlName="password" name="password" required>
+    <input type="password" minlength="4"formControlName="password" name="password" required>
 
     <label for="email"><b>Email</b></label>
     <input type="text" formControlName="email" name="email" required>
