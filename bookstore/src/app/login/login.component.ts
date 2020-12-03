@@ -34,26 +34,32 @@ export class LoginComponent implements OnInit {
   testCompare() {
     
     let user = (document.getElementById("user") as HTMLInputElement).value;
-    let pass = (document.getElementById("pw") as  HTMLInputElement).value;
-    let check;
-    this.httpClientService.getUser(user).subscribe(
-      (response) => {
-        let check = JSON.stringify(response);
-        let users = JSON.parse(check);
-        if (users.username == user && users.password == pass) {
-          this.genAndSaveUserToken(check);
-          let checker;
-          checker = localStorage.getItem("redirect");
-          if (checker) {
-            localStorage.removeItem("redirect");
-            this.router.navigate(['/payment']);
-          } else
-            this.router.navigate(['']);
+    let pass = (document.getElementById("pw") as HTMLInputElement).value;
+    if (user.length == 0)
+      alert("Enter a username");
+    else if (pass.length == 0)
+      alert("Enter a password");
+    else {
+      let check;
+      this.httpClientService.getUser(user).subscribe(
+        (response) => {
+          let check = JSON.stringify(response);
+          let users = JSON.parse(check);
+          if (users.username == user && users.password == pass) {
+            this.genAndSaveUserToken(check);
+            let checker;
+            checker = localStorage.getItem("redirect");
+            if (checker) {
+              localStorage.removeItem("redirect");
+              this.router.navigate(['/payment']);
+            } else
+              this.router.navigate(['']);
 
-        } else alert("Incorrect username or password")
-        
-      }
-    );
+          } else alert("Incorrect username or password")
+
+        }
+      );
+    }
   }
 
   genAndSaveUserToken(user) {

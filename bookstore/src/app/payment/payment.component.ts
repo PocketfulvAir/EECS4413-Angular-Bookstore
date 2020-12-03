@@ -42,7 +42,7 @@ export class PaymentComponent implements OnInit {
       alert("Credit Card Authorization Failed");
       this.router.navigate(['']);
     } else {
-      if (cc.length == 16) {
+      if (cc.length == 16 && !isNaN(Number(cc))) {
 
         let onum = Math.floor(Math.random() * 2102102102) + 1
         let d = new Date().toString();

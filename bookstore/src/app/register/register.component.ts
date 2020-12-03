@@ -43,23 +43,37 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(userData) {
-    userData.type = 'user';
-    this.httpClientService.saveToken("user");
-    this.httpClientService.saveUser(JSON.stringify(userData));
+    let reg = new RegExp("[a-zA-Z0-9_-]@[a-zA-Z0-9].c((om$)|(a$))");
+    if (userData.username.length == 0)
+      alert("Input a username");
+    else if (userData.email.length == 0)
+      alert("Input an email");
+    else if (userData.password.length == 0)
+      alert("Input a password");
+    else if (userData.billing.length == 0)
+      alert("Input a billing address");
+    else if (userData.mailing.length == 0)
+      alert("Input a mailing address");
+    else if (!reg.test(userData.email))
+      alert("not a valid email");
+    else {
+      userData.type = 'user';
+      this.httpClientService.saveToken("user");
+      this.httpClientService.saveUser(JSON.stringify(userData));
 
-    this.httpClientService.addUser(userData).subscribe(
-      (data) => {
-        alert("Successful Registration");
+      this.httpClientService.addUser(userData).subscribe(
+        (data) => {
+          alert("Successful Registration");
+        }
+      );
+      let check;
+      check = localStorage.getItem("redirect");
+      if (check) {
+        localStorage.removeItem("redirect");
+        this.router.navigate(['/payment']);
       }
-    );
-    let check;
-    check = localStorage.getItem("redirect");
-    if (check) {
-      localStorage.removeItem("redirect");
-      this.router.navigate(['/payment']);
+      else
+        this.router.navigate(['/login']);
     }
-    else
-      this.router.navigate(['/login']);
-    
   }
 }
